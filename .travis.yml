@@ -1,36 +1,47 @@
-language: node_js # 声明环境为node
-node_js: stable
+language: node_js  #设置语言
 
-# Travis-CI Caching
+node_js: stable  #设置相应的版本
+
 cache:
-  directories:
-    - node_modules # 缓存node_modules文件夹
+    apt: true
+    directories:
+        - node_modules # 缓存不经常更改的内容
 
-# S: Build Lifecycle
+before_install:
+    - export TZ='Asia/Shanghai' # 更改时区
+
 install:
-  - npm install # 下载依赖
+  - npm install  #安装hexo及插件
 
 script:
-  - hexo g # 我装了algolia的搜索工具。这一步正常可以是 hexo g
+  - hexo clean  #清除
+  - hexo g #生成
 
-
-after_script: # 推送到github的部分
+after_script:
+  - git clone https://${GH_REF} .deploy_git  # GH_REF是最下面配置的仓库地址
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/   # 这一步之前的操作是为了保留master分支的提交记录，不然每次git init的话只有1条commit
   - cd ./public
-  - git init
-  - git config user.name "IceblueSakura"
-  - git config user.email "litao@IceblueSakura.xyz"
+  - git config user.name "icebluesakura"  #修改name
+  - git config user.email "1059451121@qq.com"  #修改email
   - git add .
-  - git commit -m "Update docs"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" 
-master:master #通过之前存在Travis-CI里的token以及github仓库的地址推送到相应的master分支
-# E: Build LifeCycle
+  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
+  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master  #Travis_Token是在Travis中配置环境变量的名称
 
 branches:
   only:
-    - hexo # 只对hexo分支构建
-
-env: # 环境变量
+    - master  #只监测master分支，master是我的分支的名称，可根据自己情况设置
+env:
  global:
-   - GH_REF: github.com/IceblueSakura/icebluesakura.github.io.git 
-#我的仓库地址
+   - GH_REF: github.com/icebluesakura/blog  #设置GH_REF，注意更改yourname
 
+# configure notifications (email, IRC, campfire etc)
+# please update this section to your needs!
+# https://docs.travis-ci.com/user/notifications/
+notifications:
+  email:
+    - litao@icebluesakura.xyz
+  on_success: change
+  on_failure: always
