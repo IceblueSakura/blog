@@ -6,24 +6,28 @@ cache:
     - node_modules
 
 before_install:
- - git clone https://github.com/IceblueSakura/blog.git
-
+  - git clone https://github.com/IceblueSakura/blog.git
+  - chmod 600 ~/.ssh/*
+  - cp .travis/id_rsa_blog ~/.ssh/
+  - cp .travis/ssh_config ~/.ssh/config
+  - git config --global user.name "IceblueSakura" 
+  - git config --global user.email "1059451121@qq.com"
 install:
   - npm install hexo -g
-  
+
 script:
   - cd blog
   - hexo clean
   - hexo g
-#  - hexo d 
-after_script:
-  - cd ./public
-  - git init
-  - git config --global user.name "IceblueSakura" 
-  - git config --global user.email "1059451121@qq.com"
-  - git add .
-  - git commit -m "Update docs"
-  - git push --force --quiet "https://github.com/icebluesakura/icebluesakura.github.io" master:master
+  - hexo d 
+#after_script:
+#  - cd ./public
+#  - git init
+#  - git config --global user.name "IceblueSakura" 
+#  - git config --global user.email "1059451121@qq.com"
+#  - git add .
+#  - git commit -m "Update docs"
+#  - git push --force --quiet "https://github.com/icebluesakura/icebluesakura.github.io" master:master
   
 branches:
   only:
