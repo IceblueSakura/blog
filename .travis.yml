@@ -5,9 +5,9 @@ cache:
   - node_modules
 before_install:
   - openssl aes-256-cbc -K $encrypted_ec3bbb34470a_key -iv $encrypted_ec3bbb34470a_iv -in .travis/id_rsa_blog.enc -out .travis/id_rsa_blog -d
-  - chmod 600 ~/.ssh/*
   - cp .travis/id_rsa_blog ~/.ssh/id_rsa_blog
   - cp .travis/ssh_config ~/.ssh/config
+  - chmod 600 ~/.ssh/*
   - eval $(ssh-agent)
   - ssh-add ~/.ssh/id_rsa_blog
   - git config --global user.name "IceblueSakura"
