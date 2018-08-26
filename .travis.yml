@@ -8,6 +8,7 @@ before_install:
   - chmod 600 ~/.ssh/*
   - cp .travis/id_rsa_blog ~/.ssh/id_rsa_blog
   - cp .travis/ssh_config ~/.ssh/config
+  - eval $(ssh-agent)
   - ssh-add ~/.ssh/id_rsa_blog
   - git config --global user.name "IceblueSakura"
   - git config --global user.email "1059451121@qq.com"
