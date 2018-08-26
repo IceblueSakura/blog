@@ -4,23 +4,20 @@ cache:
   directories:
   - node_modules
 before_install:
-- openssl aes-256-cbc -K $encrypted_ec3bbb34470a_key -iv $encrypted_ec3bbb34470a_iv
-  -in id_rsa_blog.enc -out ./.travis/id_rsa_blog -d
-- openssl aes-256-cbc -K $encrypted_ec3bbb34470a_key -iv $encrypted_ec3bbb34470a_iv
-  -in id_rsa_blog.enc -out id_rsa_blog -d
-- git clone https://github.com/IceblueSakura/blog.git
-- chmod 600 ~/.ssh/*
-- cp .travis/id_rsa_blog ~/.ssh/
-- cp .travis/ssh_config ~/.ssh/config
-- git config --global user.name "IceblueSakura"
-- git config --global user.email "1059451121@qq.com"
+  - openssl aes-256-cbc -K $encrypted_ec3bbb34470a_key -iv $encrypted_ec3bbb34470a_iv in id_rsa_blog.enc -out ./.travis/id_rsa_blog -d
+  - chmod 600 ~/.ssh/*
+  - cp .travis/id_rsa_blog ~/.ssh/
+  - cp .travis/ssh_config ~/.ssh/config
+  - ssh-add ~/.ssh/id_rsa_blog
+  - git config --global user.name "IceblueSakura"
+  - git config --global user.email "1059451121@qq.com"
+  - git clone https://github.com/IceblueSakura/blog.git
 install:
-- npm install hexo -g
+  - npm install hexo -g
 script:
-- cd blog
-- hexo clean
-- hexo g
-- hexo d
+  - hexo clean
+  - hexo g
+  - hexo d
 branches:
   only:
   - master
