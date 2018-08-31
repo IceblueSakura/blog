@@ -5,7 +5,7 @@
 # Site
 title: IceblueSakura
 subtitle: 冰蓝
-description: 这里还没有描述呢..
+description: 你想看到什么呢？
 author: 冰蓝.
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -53,7 +53,7 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: 默认分类
+default_category: 随缘分类
 category_map:
 tag_map:
 
