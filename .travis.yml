@@ -20,6 +20,9 @@ script:
   - hexo clean
   - hexo g
   - hexo d
+#  - git add .git
+#  - git commit -m "*"
+#  - git push
 branches:
   only:
   - master
