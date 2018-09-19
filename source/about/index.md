@@ -10,6 +10,7 @@ type: "about"
 
 最喜欢的人是@蓝雪 呢
 
+![qwq](/img/about.jpg)
 一个无趣的人，但是还是很喜欢认识更多的人呢。
 QQ 1059451121
 Mail litao@icebluesakura.xyz
