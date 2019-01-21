@@ -223,7 +223,7 @@ disqus:
 # ---------------
 since: 2018
 
-footer_custom_text: 感谢你看到这里w
+footer_custom_text: 感谢你看到这里w<br>备案号
 
 ICP:
   enable: false
