@@ -223,11 +223,11 @@ disqus:
 # ---------------
 since: 2018
 
-footer_custom_text: 感谢你看到这里w<br>备案号
+footer_custom_text: 感谢你看到这里w<br>
 
 ICP:
-  enable: false
-  #text: 
+  enable: enable
+  text: 吉ICP备17008143号
 
 # busuanzi count for PV / UV in site
 busuanzi:
